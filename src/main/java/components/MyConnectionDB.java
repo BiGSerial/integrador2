@@ -2,6 +2,7 @@ package components;
 
 import java.sql.*;
 
+
 public class MyConnectionDB {
     private String url = "jdbc:mysql://localhost:3307/meu_banco";
     private String user = "root";
@@ -21,7 +22,7 @@ public class MyConnectionDB {
         }
 
     }
-    public String  selectAllEspecialidades() throws SQLException {
+    public String selectAllEspecialidades() throws SQLException {
         connection = getConnection();
 
         String sql = "SELECT * from especialidades";
@@ -39,6 +40,7 @@ public class MyConnectionDB {
         closeConnection();
         return resultBuilder.toString();
     }
+
     public String  selectAllPaciente() throws SQLException {
         connection = getConnection();
 
@@ -60,6 +62,7 @@ public class MyConnectionDB {
         closeConnection();
         return resultBuilder.toString();
     }
+
     public String  selectAllAgenda() throws SQLException {
         connection = getConnection();
 
@@ -78,7 +81,8 @@ public class MyConnectionDB {
         closeConnection();
         return resultBuilder.toString();
     }
-    public String  selectAllPerguntas() throws SQLException {
+
+    public String selectAllPerguntas() throws SQLException {
         connection = getConnection();
 
         String sql = "SELECT * from perguntas";

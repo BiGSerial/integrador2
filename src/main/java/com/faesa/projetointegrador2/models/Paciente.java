@@ -19,8 +19,8 @@ public class Paciente extends Usuario {
 
     public Paciente() {}
 
-    public Paciente(String login, String senha, String email, String nome, int idade, String telefone, String historicoTestes) {
-        super(login, senha, email);
+    public Paciente(String senha, String email, String nome, int idade, String telefone, String historicoTestes) {
+        super(senha, email);
         this.nome = nome;
         this.idade = idade;
         this.telefone = telefone;

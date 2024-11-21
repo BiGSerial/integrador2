@@ -18,8 +18,8 @@ public class Psicologo extends Usuario {
 
     public Psicologo() {}
 
-    public Psicologo(String login, String senha, String email, String nome, String crp, String telefone) {
-        super(login, senha, email);
+    public Psicologo(String senha, String email, String nome, String crp, String telefone) {
+        super(senha, email);
         this.nome = nome;
         this.crp = crp;
         this.telefone = telefone;

@@ -26,9 +26,19 @@ public class UsuarioService {
         // Determina qual tipo de usuário criar com base no tipo fornecido no DTO
         Usuario usuario;
         if ("paciente".equalsIgnoreCase(usuarioDTO.getTipoUsuario())) {
-            usuario = new Paciente();
+            Paciente paciente = new Paciente();
+            paciente.setNome(usuarioDTO.getNome());
+            paciente.setTelefone(usuarioDTO.getTelefone());
+            paciente.setHistoricoTestes(usuarioDTO.getHistoricoTestes());
+            paciente.setIdade(usuarioDTO.getIdade());
+            usuario = paciente;
+
         } else if ("psicologo".equalsIgnoreCase(usuarioDTO.getTipoUsuario())) {
-            usuario = new Psicologo();
+            Psicologo psicologo = new Psicologo();
+            psicologo.setNome(usuarioDTO.getNome());
+            psicologo.setCrp(usuarioDTO.getCrp());
+            psicologo.setTelefone(usuarioDTO.getTelefone());
+            usuario = psicologo;
         } else {
             throw new IllegalArgumentException("Tipo de usuário inválido.");
         }
@@ -47,6 +57,11 @@ public class UsuarioService {
 
         // Verifica a senha
         return passwordService.matchesPassword(senha, usuario.getSenha());
+    }
+
+    public Usuario findByEmail(String email) {
+        return usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o email: " + email));
     }
 
 }

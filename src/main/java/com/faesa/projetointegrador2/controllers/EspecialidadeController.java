@@ -25,6 +25,17 @@ public class EspecialidadeController {
         return especialidadeRepository.save(especialidade);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Especialidade> updateEspecialidade(
+            @PathVariable Long id,
+            @RequestBody Especialidade especialidadeAtualizada) {
+        return especialidadeRepository.findById(id).map(especialidade -> {
+            especialidade.setDescricao(especialidadeAtualizada.getDescricao());
+            Especialidade especialidadeSalva = especialidadeRepository.save(especialidade);
+            return ResponseEntity.ok(especialidadeSalva);
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEspecialidade(@PathVariable Long id) {
         if (especialidadeRepository.existsById(id)) {

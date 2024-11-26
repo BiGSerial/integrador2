@@ -55,7 +55,7 @@ public class UsuarioService {
 
     public boolean autenticarUsuario(String email, String senha) {
         var usuario = usuarioRepository.findByEmail(email)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "Tipo de usuário inválido."));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.PRECONDITION_FAILED, "Usuario ou Senha inválido."));
 
         // Verifica a senha
         return passwordService.matchesPassword(senha, usuario.getSenha());

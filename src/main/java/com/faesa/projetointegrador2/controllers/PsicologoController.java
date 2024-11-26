@@ -26,4 +26,13 @@ public class PsicologoController {
     public List<Psicologo> listarPsicologos() {
         return psicologoRepository.findAll();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePsicologo(@PathVariable Long id) {
+        if (psicologoRepository.existsById(id)) {
+            psicologoRepository.deleteById(id);
+            return ResponseEntity.noContent().build(); // Retorna 204 No Content
+        }
+        return ResponseEntity.notFound().build(); // Retorna 404 Not Found
+    }
 }

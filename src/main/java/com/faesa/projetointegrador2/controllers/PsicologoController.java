@@ -27,18 +27,18 @@ public class PsicologoController {
         return psicologoRepository.findAll();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Psicologo> updatePsicologo(@PathVariable Long id, @RequestBody Psicologo updatedPsicologo) {
-        return psicologoRepository.findById(id)
-                .map(psicologo -> {
-                    psicologo.setNome(updatedPsicologo.getNome());
-                    psicologo.setCrp(updatedPsicologo.getCrp());
-                    psicologo.setTelefone(updatedPsicologo.getTelefone());
-                    psicologo.setEspecialidade(updatePsicologo.getEspecialidade());
-                    return ResponseEntity.ok(psicologoRepository.save(paciente));
-                })
-                .orElse(ResponseEntity.notFound().build());
-    }
+  @PutMapping("/{id}")
+public ResponseEntity<Psicologo> updatePsicologo(@PathVariable Long id, @RequestBody Psicologo updatedPsicologo) {
+    return psicologoRepository.findById(id)
+            .map(psicologo -> {
+                psicologo.setNome(updatedPsicologo.getNome());
+                psicologo.setCrp(updatedPsicologo.getCrp());
+                psicologo.setTelefone(updatedPsicologo.getTelefone());
+                psicologo.setEspecialidade(updatedPsicologo.getEspecialidade());
+                return ResponseEntity.ok(psicologoRepository.save(psicologo));
+            })
+            .orElse(ResponseEntity.notFound().build());
+}
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePsicologo(@PathVariable Long id) {
